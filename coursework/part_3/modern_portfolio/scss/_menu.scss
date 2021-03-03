@@ -14,4 +14,20 @@
     background: #fff;
     @include easeOut();
   }
+  // Rotate into X with menu lines
+  &.close {
+    transform: rotate(180deg);
+    .btn-line {
+      // Rotate lines 1 and 3 and hide 2nd
+      &:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      &:nth-child(2) {
+        opacity: 0;
+      }
+      &:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+    }
+  }
 }
