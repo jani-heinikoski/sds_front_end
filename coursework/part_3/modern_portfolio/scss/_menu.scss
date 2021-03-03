@@ -18,7 +18,7 @@
   &.close {
     transform: rotate(180deg);
     .btn-line {
-      // Rotate lines 1 and 3 and hide 2nd
+      // Rotate lines 1 and 3 and hide 2nd, turns hamburger menu icon to an X
       &:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
       }
