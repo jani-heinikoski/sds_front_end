@@ -5,6 +5,7 @@ $home-image: url(../img/background.jpg);
 $portrait-image: url(../img/portrait.jpg);
 $portrait-image-small: url(../img/portrait_small.jpg);
 $background-opacity: 0.85;
+$main-footer-height: 60px;
 
 @mixin easeOut {
   transition: all 0.5s ease-out;
