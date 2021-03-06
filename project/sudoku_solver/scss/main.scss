@@ -1,0 +1,35 @@
+/*
+Author: Jani Heinikoski
+Last modified: 06.03.2021
+Sources:
+Stackoverflow. 2020. Dynamically change color to lighter or darker by percentage CSS (Javascript). [Website]. [Cited 06.03.2021]. Available: https://stackoverflow.com/questions/1625681/dynamically-change-color-to-lighter-or-darker-by-percentage-css-javascript
+*/
+@import "./config";
+
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+}
+
+body {
+  @include background-common();
+  @include header-common();
+  @include footer-common();
+}
+
+main {
+  @include main-common();
+}
+
+a.fab {
+  padding: 2px;
+  text-decoration: none;
+  border: 1px solid red;
+  border-radius: 50%;
+  margin-left: 12px;
+  &:hover {
+    // (Stackoverflow. 2020. Dynamically change color to lighter or darker by percentage CSS (Javascript).)
+    filter: brightness(150%);
+    transition: filter 0.2s ease-out;
+  }
+}
