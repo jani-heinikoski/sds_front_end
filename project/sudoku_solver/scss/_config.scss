@@ -10,6 +10,7 @@ $header-dark-color: #212121;
 $footer-dark-color: #212121;
 
 $background-opacity: 1;
+$menu-opacity: 0.85;
 
 $header-height: 70px;
 $footer-height: 70px;
@@ -59,6 +60,7 @@ $footer-height: 70px;
     // Hamburger menu styling
     .hamburger-menu {
       position: relative;
+      cursor: pointer;
       .hamburger-menu-line {
         width: 35px;
         height: 3px;
@@ -74,7 +76,8 @@ $footer-height: 70px;
         @for $i from 1 through 3 {
           :nth-child(#{$i}) {
             background-color: red;
-            transition: background-color 0.15s ease-out;
+            transition: background-color 0.15s ease-out,
+              transform 0.15s ease-out;
           }
         }
       }
