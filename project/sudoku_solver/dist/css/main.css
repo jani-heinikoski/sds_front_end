@@ -134,6 +134,24 @@ main {
   padding-left: 2px; }
   main > h1 {
     font-size: 2em; }
+  main div.solver-quick-access {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 32px; }
+    main div.solver-quick-access::after {
+      content: "Take me to the solver!";
+      /* Absolute position so the flex-item centering is calculated
+      solely by the hamburger menu icon */
+      margin-top: 16px;
+      margin-bottom: 16px;
+      font-size: 1.1em;
+      left: 0; }
+    main div.solver-quick-access > a:hover {
+      filter: brightness(150%);
+      transition: filter 0.2s ease-out;
+      cursor: pointer; }
 
 a.fab {
   padding: 2px;

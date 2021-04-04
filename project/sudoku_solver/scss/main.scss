@@ -20,6 +20,28 @@ body {
 
 main {
   @include main-common();
+  div.solver-quick-access {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 32px;
+    &::after {
+      content: "Take me to the solver!";
+      /* Absolute position so the flex-item centering is calculated
+      solely by the hamburger menu icon */
+      margin-top: 16px;
+      margin-bottom: 16px;
+      font-size: 1.1em;
+      left: 0;
+    }
+    & > a:hover {
+      // (Stackoverflow. 2020. Dynamically change color to lighter or darker by percentage CSS (Javascript).)
+      filter: brightness(150%);
+      transition: filter 0.2s ease-out;
+      cursor: pointer;
+    }
+  }
 }
 
 a.fab {
