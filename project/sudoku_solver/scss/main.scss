@@ -6,6 +6,7 @@ Stackoverflow. 2020. Dynamically change color to lighter or darker by percentage
 */
 @import "./config";
 @import "./menu";
+@import "./solver";
 
 * {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -28,8 +29,6 @@ main {
     margin-top: 32px;
     &::after {
       content: "Take me to the solver!";
-      /* Absolute position so the flex-item centering is calculated
-      solely by the hamburger menu icon */
       margin-top: 16px;
       margin-bottom: 16px;
       font-size: 1.1em;
@@ -54,5 +53,11 @@ a.fab {
     // (Stackoverflow. 2020. Dynamically change color to lighter or darker by percentage CSS (Javascript).)
     filter: brightness(150%);
     transition: filter 0.2s ease-out;
+  }
+}
+
+.lg-heading {
+  @media screen and (max-width: 600px) {
+    font-size: 20px;
   }
 }
