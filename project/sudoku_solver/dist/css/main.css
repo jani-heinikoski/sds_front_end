@@ -38,7 +38,7 @@ Sources:
       font-size: 2em;
       text-decoration: none; }
     .menu-nav .menu-nav-item.current > a {
-      color: yellow; }
+      color: red; }
     @media screen and (max-width: 768px) {
       .menu-nav .menu-nav-item > a {
         font-size: 1.75em;
@@ -52,6 +52,115 @@ Sources:
 
 .hamburger-menu.close :nth-child(1) {
   transform: rotate(-45deg) translateY(5px); }
+
+/*
+Author: Jani Heinikoski
+Last modified: 12.06.2021
+Sources:
+W3Schools. 2021. How TO - Hide Arrows From Input Number. [Cited 12.06.2021]. Available: https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp 
+*/
+/* (W3Schools, 2021) */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+/* (W3Schools, 2021) */
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield; }
+
+.sudoku-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap; }
+  .sudoku-container .game-grid {
+    display: grid;
+    grid-template-rows: repeat(9, 1fr);
+    margin-bottom: 50px; }
+  .sudoku-container .row {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap; }
+
+.sudoku-cell {
+  height: 52px;
+  width: 52px;
+  text-align: center;
+  font-size: 24px; }
+  @media screen and (max-width: 960px) {
+    .sudoku-cell {
+      width: 42px;
+      height: 42px; } }
+  @media screen and (max-width: 600px) {
+    .sudoku-cell {
+      width: 32px;
+      height: 32px; } }
+  @media screen and (max-width: 400px) {
+    .sudoku-cell {
+      width: 28px;
+      height: 28px; } }
+  @media screen and (max-width: 350px) {
+    .sudoku-cell {
+      width: 20px;
+      height: 20px;
+      font-size: 18px; } }
+  @media screen and (max-width: 300px) {
+    .sudoku-cell {
+      width: 16px;
+      height: 16px;
+      font-size: 16px; } }
+
+[id="11"],
+[id="12"],
+[id="13"],
+[id="21"],
+[id="22"],
+[id="23"],
+[id="31"],
+[id="32"],
+[id="33"],
+[id="17"],
+[id="18"],
+[id="19"],
+[id="27"],
+[id="28"],
+[id="29"],
+[id="37"],
+[id="38"],
+[id="39"],
+[id="71"],
+[id="72"],
+[id="73"],
+[id="81"],
+[id="82"],
+[id="83"],
+[id="91"],
+[id="92"],
+[id="93"],
+[id="77"],
+[id="78"],
+[id="79"],
+[id="87"],
+[id="88"],
+[id="89"],
+[id="97"],
+[id="98"],
+[id="99"],
+[id="44"],
+[id="45"],
+[id="46"],
+[id="54"],
+[id="55"],
+[id="56"],
+[id="64"],
+[id="65"],
+[id="66"] {
+  background-color: grey; }
 
 * {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -142,8 +251,6 @@ main {
     margin-top: 32px; }
     main div.solver-quick-access::after {
       content: "Take me to the solver!";
-      /* Absolute position so the flex-item centering is calculated
-      solely by the hamburger menu icon */
       margin-top: 16px;
       margin-bottom: 16px;
       font-size: 1.1em;
@@ -162,3 +269,7 @@ a.fab {
   a.fab:hover {
     filter: brightness(150%);
     transition: filter 0.2s ease-out; }
+
+@media screen and (max-width: 600px) {
+  .lg-heading {
+    font-size: 20px; } }
