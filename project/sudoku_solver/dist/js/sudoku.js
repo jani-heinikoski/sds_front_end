@@ -4,6 +4,8 @@ Last modified: 28.06.2021
 Description: Sudoku game logic
 Sources:*/
 /* ---------------------- GLOBAL VARIABLES ----------------------*/
+// Minimum amount of correctly filled clues
+const MIN_CLUES = 17;
 // Represents the Sudoku as an 2d-array consisting of the input elements
 const GAME_GRID = [];
 // An example sudoku
@@ -19,6 +21,12 @@ const EXAMPLE_GAME = [
     [0, 0, 0, 0, 0, 8, 0, 0, 4],
 ];
 /* ---------------------- UTILITY FUNCTIONS ----------------------*/
+// Checks that the sudoku contains at least n clues (see project/docs/sudoku_solver_plan.docx)
+const checkClueCount = (n, gameGrid) => {
+    let count = 0;
+    gameGrid.forEach((row) => {row.forEach((clue) => {if (clue.value !== '') count++;})});
+    return count >= n;
+}
 // Returns the (0-based) row and col of the top-left cell in a three by three Sudoku grid 
 const getStartOf3by3 = (row, col) => {
     let getCol = (r) => {
@@ -64,7 +72,7 @@ const checkGridSanity = (gameGrid) => {
                 return false;
         }
     }
-    return true;
+    return checkClueCount(MIN_CLUES, gameGrid);
 }
 /* ---------------------- INITIALIZATION ----------------------*/
 // Fetches the references of the game grid's input elements to the global GAME_GRID array
