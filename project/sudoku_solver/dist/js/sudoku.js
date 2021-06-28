@@ -19,6 +19,24 @@ const EXAMPLE_GAME = [
     [0, 0, 0, 0, 0, 8, 0, 0, 4],
 ];
 /* ---------------------- UTILITY FUNCTIONS ----------------------*/
+// Returns the (0-based) row and col of the top-left cell in a three by three Sudoku grid 
+const getStartOf3by3 = (row, col) => {
+    let getCol = (r) => {
+        if (col >= 0 && col <= 2)
+            return [r, 0];
+        else if (col >= 3 && col <= 5)
+            return [r, 3];
+        else
+            return [r, 6];
+    }
+    if (row >= 0 && row <= 2)
+        return getCol(0);
+    else if (row >= 3 && row <= 5)
+        return getCol(3);
+    else
+        return getCol(6);
+}
+
 // Checks if the number at gameGrid[row][col] fits as per Sudoku's rules
 const fits = (row, col, gameGrid) => {
     let val = gameGrid[row][col].value;
@@ -70,3 +88,10 @@ const RESET_BTN = document.getElementsByClassName('reset')[0];
 RESET_BTN.addEventListener('click', () => {
     GAME_GRID.forEach((arr) => {arr.forEach((element) => {element.value = ''})});
 })
+// Event listener for the "Load Example Button"
+const EXAMPLE_BTN = document.getElementsByClassName('example')[0];
+EXAMPLE_BTN.addEventListener('click', () => {
+    for (let i = 0; i < 9; i++)
+        for (let j = 0; j < 9; j++)
+            GAME_GRID[i][j].value = (EXAMPLE_GAME[i][j] === 0) ? '' : EXAMPLE_GAME[i][j];
+});
