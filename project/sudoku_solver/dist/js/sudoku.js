@@ -9,7 +9,7 @@ const MIN_CLUES = 17;
 // Represents the Sudoku as an 2d-array consisting of the input elements
 const GAME_GRID = [];
 // An example sudoku
-const EXAMPLE_GAME = [
+const EXAMPLE_GAME_SLOW = [
     [3, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 7, 0, 0, 0, 5, 0, 3, 9],
     [0, 0, 0, 0, 0, 7, 0, 6, 2],
@@ -20,6 +20,19 @@ const EXAMPLE_GAME = [
     [0, 0, 0, 7, 9, 0, 0, 0, 6],
     [0, 0, 0, 0, 0, 8, 0, 0, 4],
 ];
+const EXAMPLE_GAME_FAST = [
+    [8, 2, 0, 3, 0, 0, 0, 0, 0],
+    [4, 9, 0, 0, 0, 6, 0, 7, 1],
+    [0, 1, 0, 4, 0, 0, 0, 0, 9],
+    [0, 0, 0, 0, 0, 5, 3, 0, 0],
+    [0, 4, 9, 0, 7, 0, 0, 0, 2],
+    [3, 6, 2, 9, 0, 0, 7, 0, 0],
+    [0, 3, 0, 0, 6, 8, 0, 0, 5],
+    [0, 7, 0, 0, 0, 9, 0, 1, 3],
+    [0, 0, 0, 0, 0, 0, 0, 0, 7],
+];
+// ON/OFF -flag to swap between examples
+let GAME_FLAG = false;
 /* ---------------------- UTILITY FUNCTIONS ----------------------*/
 // Checks that the sudoku contains at least n clues (see project/docs/sudoku_solver_plan.docx)
 const checkClueCount = (n, gameGrid) => {
@@ -86,6 +99,12 @@ const getNextAvailableCell = (gameGrid) => {
                 return [i, j];
     return null;
 }
+// Loads (and displays) an example game
+const loadExampleGame = (exampleGame, gameGrid) => {
+    for (let i = 0; i < 9; i++)
+        for (let j = 0; j < 9; j++)
+            gameGrid[i][j].value = (exampleGame[i][j] === 0) ? '' : exampleGame[i][j];
+}
 /* ---------------------- SOLVING LOGIC ----------------------*/
 // Solves the sudoku by using a naive exhaustive brute force algorithm 
 const bruteForceSolve = (gameGrid) => {
@@ -132,7 +151,9 @@ RESET_BTN.addEventListener('click', () => {
 // Event listener for the "Load Example Button"
 const EXAMPLE_BTN = document.getElementsByClassName('example')[0];
 EXAMPLE_BTN.addEventListener('click', () => {
-    for (let i = 0; i < 9; i++)
-        for (let j = 0; j < 9; j++)
-            GAME_GRID[i][j].value = (EXAMPLE_GAME[i][j] === 0) ? '' : EXAMPLE_GAME[i][j];
+    if (GAME_FLAG)
+        loadExampleGame(EXAMPLE_GAME_SLOW, GAME_GRID);
+    else
+        loadExampleGame(EXAMPLE_GAME_FAST, GAME_GRID);
+    GAME_FLAG = !GAME_FLAG;
 });
