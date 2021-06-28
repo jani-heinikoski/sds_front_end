@@ -44,10 +44,9 @@ const getStartOf3by3 = (row, col) => {
     else
         return getCol(6);
 }
-
 // Checks if the number at gameGrid[row][col] fits as per Sudoku's rules
 const fits = (row, col, gameGrid) => {
-    let val = gameGrid[row][col].value;
+    let val = gameGrid[row][col].value, r, c;
     // An empty cell always "fits"
     if (val === '')
         return true;
@@ -59,6 +58,11 @@ const fits = (row, col, gameGrid) => {
     for (let i = 0; i < 9; i++)
         if (gameGrid[i][col].value === val && i !== row)
             return false;
+    [r, c] = getStartOf3by3(row, col);
+    for (let i = 0; i < 3; i++)
+        for (let j = 0; j < 3; j++)
+            if (gameGrid[r + i][c + j].value === val && (r + i) !== row && (c + j) !== col)
+                return false;
     return true;
 }
 // Checks if the grid has been filled with proper values
@@ -73,6 +77,33 @@ const checkGridSanity = (gameGrid) => {
         }
     }
     return checkClueCount(MIN_CLUES, gameGrid);
+}
+// Get the (row, col) of the first empty cell
+const getNextAvailableCell = (gameGrid) => {
+    for (let i = 0; i < 9; i++)
+        for (let j = 0; j < 9; j++)
+            if (gameGrid[i][j].value === '')
+                return [i, j];
+    return null;
+}
+/* ---------------------- SOLVING LOGIC ----------------------*/
+// Solves the sudoku by using a naive exhaustive brute force algorithm 
+const bruteForceSolve = (gameGrid) => {
+    let coords = getNextAvailableCell(gameGrid), solved = false;
+    if (coords === null) {
+        return true;
+    }
+    for (let i = 1; i <= 9 && solved === false; i++) {
+        gameGrid[coords[0]][coords[1]].value = i;
+        if (fits(coords[0], coords[1], gameGrid)) {
+             if (bruteForceSolve(gameGrid)) {
+                solved = true;
+                return true;
+             }
+        }
+    }
+    gameGrid[coords[0]][coords[1]].value = '';
+    return false;
 }
 /* ---------------------- INITIALIZATION ----------------------*/
 // Fetches the references of the game grid's input elements to the global GAME_GRID array
@@ -89,7 +120,9 @@ initializeGameGrid();
 // Event listener for the "Solve Button"
 const SOLVE_BTN = document.getElementsByClassName('solve')[0];
 SOLVE_BTN.addEventListener('click', () => {
-    console.log(checkGridSanity(GAME_GRID));
+    if (checkGridSanity(GAME_GRID))
+        bruteForceSolve(GAME_GRID) === true ? console.log('Solution found') : console.log('No solution');
+    
 });
 // Event listener for the "Reset Button"
 const RESET_BTN = document.getElementsByClassName('reset')[0];
