@@ -7,3 +7,5 @@ This repository includes all coursework (modules, learning diary, project) relat
 
 See the project/docs if you are interested in the preliminary plan of the project.
   - Note that the finished project differs A LOT from the preliminary plan (see project/docs/finished.docx for more information on why)
+
+The project is purely a static page hosted in GitHub Pages (link above) and thus requires no installation. Feel free to try out the responsiveness with mobile devices (tested with Samsung Galaxy S9 - Samsung Internet Browser, Microsoft Edge Developer Tools and Google Chrome).
