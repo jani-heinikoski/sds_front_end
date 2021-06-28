@@ -27,7 +27,7 @@ const EXAMPLE_GAME = [
 ];
 
 // Checks if the grid has been filled with proper values
-function checkGridSanity(gameGrid) {
+const checkGridSanity = (gameGrid) => {
     for (i = 0; i < 9; i++) {
         for (j = 0; j < 9; j++) {
             if (gameGrid[i][j].value !== '' && !(gameGrid[i][j].value <= 9 && gameGrid[i][j].value >= 1))
@@ -35,7 +35,7 @@ function checkGridSanity(gameGrid) {
         }
     }
     return true;
-}
+} 
 
 // Fetch the game grid's input elements to a 2D-array
 const GAME_GRID = [];
